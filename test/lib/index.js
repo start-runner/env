@@ -28,11 +28,11 @@ test('basic', t => {
 test('string value', t => {
     const log = spy();
 
-    task('test')()(log).then(() => {
+    task('beep')()(log).then(() => {
         t.equal(
             process.env.NODE_ENV,
-            'test',
-            'process.env.NODE_ENV === "test"'
+            'beep',
+            'process.env.NODE_ENV === "beep"'
         );
 
         t.true(
@@ -41,8 +41,8 @@ test('string value', t => {
         );
 
         t.true(
-            log.calledWith('NODE_ENV = test'),
-            'log must been called called with "NODE_ENV = test"'
+            log.calledWith('NODE_ENV = beep'),
+            'log must been called called with "NODE_ENV = beep"'
         );
 
         delete process.env.NODE_ENV;
