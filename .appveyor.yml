@@ -5,20 +5,20 @@ version: "{build}"
 init:
   - git config --global core.autocrlf false
 
+shallow_clone: true
+
+clone_depth: 1
+
 environment:
   matrix:
     - nodejs_version: "0.12"
     - nodejs_version: "4"
     - nodejs_version: "5"
 
-install:
-  - ps: Install-Product node $env:nodejs_version
-  - npm install
-
-test_script:
-  - node --version
-  - npm --version
-  - npm start ci
+cache:
+  - "%APPDATA%\\npm\\node_modules -> package.json"
+  - "%APPDATA%\\npm-cache -> package.json"
+  - node_modules -> package.json
 
 branches:
   only:
@@ -29,12 +29,14 @@ skip_tags: true
 matrix:
   fast_finish: true
 
-cache:
-  # global npm modules
-  - "%APPDATA%\\npm\\node_modules -> package.json"
-  # npm cache
-  - "%APPDATA%\\npm-cache -> package.json"
-  # local npm modules
-  - node_modules -> package.json
-
 build: off
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - npm install -g npm
+  - npm install
+
+test_script:
+  - node --version
+  - npm --version
+  - npm start ci
