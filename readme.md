@@ -18,29 +18,31 @@ npm i -S start-env
 ## Usage
 
 ```js
-import Start from 'start';
+import start from 'start';
 import reporter from 'start-pretty-reporter';
 import env from 'start-env';
-
-const start = Start(reporter());
+import files from 'start-files';
+import read from 'start-read';
+import babel from 'start-babel';
+import write from 'start-write';
 
 export function build() {
-    return start(
-        env('production'),
-        // …
-    );
-}
-
-export function test() {
-    return start(
-        env({ MY_KEY: 'value' }),
-        // …
+    return start(reporter())(
+        env('production', () => start(
+            files('lib/**/*.js'),
+            read(),
+            babel(),
+            write('build/')
+        ))
     );
 }
 ```
 
+Why it's async? Because you might want to lazy-require something which depends on `process.env`, for example webpack config.
+
 ## Arguments
 
-`env(value)`
+`env(value, callback)`
 
 * `value` – string (shorthand for `NODE_ENV`) or an object of key-value pairs to set with `process.env`
+* `callback` – callback function which will be called after changing `process.env`
