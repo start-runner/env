@@ -5,7 +5,6 @@
 [![windows build](https://img.shields.io/appveyor/ci/start-runner/start.env?label=windows&style=flat-square)](https://ci.appveyor.com/project/start-runner/env)
 [![coverage](https://img.shields.io/codecov/c/github/start-runner/env.svg?style=flat-square)](https://codecov.io/github/start-runner/env)
 [![deps](https://img.shields.io/gemnasium/start-runner/env.svg?style=flat-square)](https://gemnasium.com/start-runner/env)
-[![gitter](https://img.shields.io/badge/gitter-join_chat_%E2%86%92-00d06f.svg?style=flat-square)](https://gitter.im/start-runner/start)
 
 [`process.env`](https://nodejs.org/api/process.html#process_process_env) task for [Start](https://github.com/start-runner/start).
 
