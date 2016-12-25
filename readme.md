@@ -10,8 +10,10 @@
 
 ## Install
 
-```
-npm i -S start-env
+```sh
+npm install --save-dev start-env
+# or
+yarn add --dev start-env
 ```
 
 ## Usage
@@ -28,11 +30,11 @@ import write from 'start-write';
 const start = Start(reporter());
 
 export const build = () => start(
-    env('NODE_ENV', 'production'),
-    files('lib/**/*.js'),
-    read(),
-    babel(),
-    write('build/')
+  env('NODE_ENV', 'production'),
+  files('lib/**/*.js'),
+  read(),
+  babel(),
+  write('build/')
 );
 ```
 
